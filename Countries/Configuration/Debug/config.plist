@@ -2,13 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>SchemeUserState</key>
-	<dict>
-		<key>Countries.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>11</integer>
-		</dict>
-	</dict>
+	<key>serverKey</key>
+	<string>42c275d355msh9f6e0c98d81a246p193264jsnc5d18450b6d6</string>
+	<key>serverAddress</key>
+	<string>https://restcountries-v1.p.rapidapi.com</string>
 </dict>
 </plist>

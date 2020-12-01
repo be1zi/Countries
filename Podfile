@@ -4,8 +4,8 @@ target 'Countries' do
 
     pod 'RxSwift', '~> 5.0'
     pod 'RxCocoa', '~> 5.0'
-    pod 'RealmSwift', '~> 4.0' 
-    pod "RxRealm", '~> 2.0'
+    pod 'RealmSwift', '~> 5.0'
+    pod "RxRealm", '~> 3.0'
     pod 'Alamofire', '~> 5.0'
     pod 'RxAlamofire', '~> 5.0'
 
