@@ -9,6 +9,16 @@ import RealmSwift
 import RxRealm
 import RxSwift
 
+public struct Sorted {
+    var key: String
+    var ascending: Bool
+    
+    public init(key: String, asc: Bool = true) {
+        self.key = key
+        self.ascending = asc
+    }
+}
+
 public class LocalRepository {
     
     //
@@ -69,7 +79,7 @@ public class LocalRepository {
     // MARK: - Get
     //
     
-    private func objects<T>(of type: T.Type, predicate: NSPredicate? = nil) throws -> Results<Object> {
+    private func objects<T>(of type: T.Type, predicate: NSPredicate? = nil, sorted: Sorted? = nil) throws -> Results<Object> {
 
         guard let objectType = T.self as? Object.Type else {
             throw NSError(domain: "Realm", code: 0, userInfo: ["message" : "Not realm object"])
@@ -81,6 +91,10 @@ public class LocalRepository {
         
         var results = realm.objects(objectType)
         
+        if let sorted = sorted {
+            results = results.sorted(byKeyPath: sorted.key, ascending: sorted.ascending)
+        }
+        
         if let predicate = predicate {
             results = results.filter(predicate)
         }
@@ -88,10 +102,10 @@ public class LocalRepository {
         return results
     }
     
-    public func getArrayObservable<T>(of type: T.Type, predicate: NSPredicate? = nil) -> Observable<[T]> {
+    public func getArrayObservable<T>(of type: T.Type, predicate: NSPredicate? = nil, sorted: Sorted? = nil) -> Observable<[T]> {
         
         do {
-            let result = try objects(of: type, predicate: predicate)
+            let result = try objects(of: type, predicate: predicate, sorted: sorted)
                         
             return Observable.collection(from: result).map {
                 $0.toArray() as! [T]

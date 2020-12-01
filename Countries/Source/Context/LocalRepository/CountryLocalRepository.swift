@@ -20,6 +20,7 @@ public class CountryLocalRepository: LocalRepository {
     //
     
     public func getCountries() -> Observable<[CountryModel]> {
-        return getArrayObservable(of: CountryModel.self)
+        let sorted = Sorted(key: "name")
+        return getArrayObservable(of: CountryModel.self, sorted: sorted)
     }
 }
